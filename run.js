@@ -29,6 +29,7 @@ async function main(user) {
     .build();
   try {
     await driver.get("https://open.spotify.com/browse/featured");
+    console.log("Opened Spotify!");
     await waitFor(randomTime(2000, 1000));
     await driver.wait(
       until.elementLocated(
@@ -50,6 +51,7 @@ async function main(user) {
     await driver
       .findElement(By.id("login-username"))
       .sendKeys(user.name, Key.TAB, user.pass, Key.TAB, Key.ENTER);
+    console.log("Logged in: " + user.name);
     let LOGIN = new Date();
     LOGIN = LOGIN.toUTCString();
     await waitFor(randomTime(2000, 1000));
@@ -57,6 +59,7 @@ async function main(user) {
       .wait(until.elementLocated(By.className("search-icon")))
       .click();
     const randomSong = Math.floor(Math.random() * (data.songs.length - 1) + 1);
+    console.log.apply("Searching for song: " + data.songs[randomSong]);
     const artist = data.songs[randomSong];
     await driver
       .wait(
@@ -91,8 +94,10 @@ async function main(user) {
         }, 200);
       }
     });
+
     const TIMEPLAYED = randomTime(9300, 5100);
     await waitFor(TIMEPLAYED);
+    console.log("Played song for: " + TIMEPLAYED);
     await driver
       .wait(
         until.elementLocated(
@@ -113,7 +118,11 @@ async function main(user) {
     });
     let LOGGED_OUT = new Date();
     LOGGED_OUT = LOGGED_OUT.toUTCString();
+    console.log("Logging out");
     logToFile(artist, TIMEPLAYED, user.name, LOGIN, LOGGED_OUT);
+    console.log("Written to log");
+    console.log("-----------------------------");
+    console.log();
   } finally {
     try {
       await driver.quit();
