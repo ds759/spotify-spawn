@@ -59,7 +59,7 @@ async function main(user) {
       .wait(until.elementLocated(By.className("search-icon")))
       .click();
     const randomSong = Math.floor(Math.random() * (data.songs.length - 1) + 1);
-    console.log.apply("Searching for song: " + data.songs[randomSong]);
+    console.log("Searching for song: " + data.songs[randomSong]);
     const artist = data.songs[randomSong];
     await driver
       .wait(
