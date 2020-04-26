@@ -3,7 +3,10 @@ const chrome = require("selenium-webdriver/chrome");
 const data = require("./data");
 
 // const timeout = () => new Promise(resolve => setTimeout(resolve, ms));
+
+const randomTime = (max, min) => Math.floor(Math.random() * max + min);
 const waitFor = ms => new Promise(r => setTimeout(r, ms));
+
 async function main(user) {
   const options = new chrome.Options();
 
@@ -17,6 +20,7 @@ async function main(user) {
     .build();
   try {
     await driver.get("https://open.spotify.com/browse/featured");
+    await waitFor(randomTime(2000, 1000));
     await driver.wait(
       until.elementLocated(
         By.className(
@@ -31,16 +35,17 @@ async function main(user) {
         )
       )
       .click();
-
+    await waitFor(randomTime(2000, 1000));
+    await driver.findElement(By.className("control-indicator")).click();
     await driver.wait(until.elementLocated(By.id("login-username")));
     await driver
       .findElement(By.id("login-username"))
       .sendKeys(user.name, Key.TAB, user.pass, Key.TAB, Key.ENTER);
-
+    await waitFor(randomTime(2000, 1000));
     await driver
       .wait(until.elementLocated(By.className("search-icon")))
       .click();
-    const randomSong = Math.floor(Math.random() * data.songs.length + 1);
+    const randomSong = Math.floor(Math.random() * (data.songs.length - 1) + 1);
     await driver
       .wait(
         until.elementLocated(
@@ -48,6 +53,7 @@ async function main(user) {
         )
       )
       .sendKeys(data.songs[randomSong], Key.ENTER);
+    await waitFor(randomTime(2000, 1000));
     await driver
       .wait(
         until.elementLocated(
@@ -57,6 +63,9 @@ async function main(user) {
       .click();
     await driver.wait(until.elementLocated(By.className("position-outer")));
     const songs = await driver.findElements(By.className("position-outer"));
+    const playButton = await driver.findElements(
+      By.className("control-button spoticon-play-16 control-button--circled")
+    );
     const songIndex = Math.floor(Math.random() * 5 + 1);
     songs.forEach((element, index) => {
       if (index === songIndex) {
@@ -66,13 +75,11 @@ async function main(user) {
         }, 200);
         setTimeout(() => {
           element.click();
-        }, 200);
-        setTimeout(() => {
-          element.click();
+          if (playButton[0]) playButton[0].click();
         }, 200);
       }
     });
-    await waitFor(5000);
+    await waitFor(randomTime(93000, 51000));
     await driver
       .wait(
         until.elementLocated(
@@ -84,6 +91,7 @@ async function main(user) {
     const actions = await driver.findElements(
       By.className("_5d8857b271ece35ed4dd191b5b15f48e-scss")
     );
+    await waitFor(randomTime(1000, 500));
     const actionIndex = 2;
     actions.forEach((element, index) => {
       if (index === actionIndex) {
@@ -91,11 +99,11 @@ async function main(user) {
       }
     });
   } finally {
-    console.log("1");
-    await driver.quit();
-    console.log("2");
-    waitFor(1000);
-    console.log("3");
+    try {
+      await driver.quit();
+    } finally {
+      console.log("done");
+    }
   }
 }
 
@@ -107,22 +115,9 @@ const asyncForEach = async (array, callback) => {
 
 const start = async () => {
   await asyncForEach(data.users, async user => {
-    console.log("0");
-
-    await waitFor(1200);
-    console.log(0.5);
+    await waitFor(randomTime(5000, 3000));
     await main(user);
-    console.log(4);
   });
-  console.log("Done");
 };
 
 start();
-// async function start() {
-//   data.users.forEach(user => {
-//       await main(user);
-//       console.log(101)
-//   });
-// }
-
-// start();

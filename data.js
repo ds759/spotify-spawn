@@ -1,9 +1,9 @@
 module.exports = {
   users: [
-    {
-      name: "angelahennesy@one-email.net",
-      pass: "Budweiser-1"
-    },
+    // {
+    //   name: "angelahennesy@one-email.net",
+    //   pass: "Budweiser-1"
+    // },
     {
       name: "angelahennesy+1@one-email.net",
       pass: "Budweiser-1"
@@ -14,7 +14,7 @@ module.exports = {
     },
     {
       name: "angelahennesy+3@one-email.net",
-      pass: "Budweiser-1"
+      pass: "Budweiser-1!"
     },
     {
       name: "angelahennesy+4@one-email.net",
