@@ -1,18 +1,27 @@
 const { Builder, By, Key, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 const data = require("./data");
-
-// const timeout = () => new Promise(resolve => setTimeout(resolve, ms));
+const fs = require("fs");
 
 const randomTime = (max, min) => Math.floor(Math.random() * max + min);
 const waitFor = ms => new Promise(r => setTimeout(r, ms));
 
+const logToFile = (artist, timeListened, user, login, logout) => {
+  let data = `{user: ${user}, loggedIn: ${login}, artist: ${artist}, playingTime: ${timeListened}ms, loggedOut: ${logout}}\n`;
+  fs.appendFile("log.txt", data, function(err) {
+    if (err) throw err;
+    console.log("Updated Log!");
+  });
+};
 async function main(user) {
   const options = new chrome.Options();
 
   options.setUserPreferences({
     "profile.default_content_setting_values.notifications": 2
   });
+  options.addArguments("--no-sandbox");
+  options.addArguments("-disable-dev-shm-usage");
+  options.addArguments("--headless");
 
   let driver = await new Builder()
     .forBrowser("chrome")
@@ -41,11 +50,14 @@ async function main(user) {
     await driver
       .findElement(By.id("login-username"))
       .sendKeys(user.name, Key.TAB, user.pass, Key.TAB, Key.ENTER);
+    let LOGIN = new Date();
+    LOGIN = LOGIN.toUTCString();
     await waitFor(randomTime(2000, 1000));
     await driver
       .wait(until.elementLocated(By.className("search-icon")))
       .click();
     const randomSong = Math.floor(Math.random() * (data.songs.length - 1) + 1);
+    const artist = data.songs[randomSong];
     await driver
       .wait(
         until.elementLocated(
@@ -79,7 +91,8 @@ async function main(user) {
         }, 200);
       }
     });
-    await waitFor(randomTime(93000, 51000));
+    const TIMEPLAYED = randomTime(9300, 5100);
+    await waitFor(TIMEPLAYED);
     await driver
       .wait(
         until.elementLocated(
@@ -98,6 +111,9 @@ async function main(user) {
         element.click();
       }
     });
+    let LOGGED_OUT = new Date();
+    LOGGED_OUT = LOGGED_OUT.toUTCString();
+    logToFile(artist, TIMEPLAYED, user.name, LOGIN, LOGGED_OUT);
   } finally {
     try {
       await driver.quit();
