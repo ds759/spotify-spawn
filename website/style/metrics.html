@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+	Projection by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Spotiy Analytics</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"
+		/>
+
+		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+	</head>
+	<body>
+		<!-- Header -->
+		<header id="header">
+			<div class="inner">
+				<a href="index.html" class="logo"
+					><strong>Projection</strong> by Daniel</a
+				>
+				<h1>Welcome to Hourly Metrics</h1>
+				<nav id="nav">
+					<a href="metrics.html">Home</a>
+				</nav>
+				<a href="#navPanel" class="navPanelToggle"
+					><span class="fa fa-bars"></span
+				></a>
+			</div>
+		</header>
+
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<header>
+					<h1></h1>
+				</header>
+
+				<div class="flex">
+					<div></div>
+
+					<div></div>
+
+					<div></div>
+				</div>
+			</div>
+		</section>
+		<section id="three" class="wrapper align-center">
+			<div class="inner">
+				<h1>Your Hourly Metrics Page</h1>
+				<p>These are reset hourly</p>
+				<table id="example" class="display" style="width: 100%;">
+					<thead>
+						<tr>
+							<th>User</th>
+							<th>Login Time</th>
+							<th>Artist</th>
+							<th>Song</th>
+							<th>Playing Time</th>
+							<th>Logout Time</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>User</th>
+							<th>Login Time</th>
+							<th>Artist</th>
+							<th>Song</th>
+							<th>Playing Time</th>
+							<th>Logout Time</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</section>
+	</body>
+	<script>
+		$(document).ready(function () {
+			$("#example").DataTable({
+				ajax: "../../log.txt",
+				columns: [
+					{ data: "user" },
+					{ data: "login_time" },
+					{ data: "artist_played" },
+					{ data: "song_played" },
+					{ data: "playing_time" },
+					{ data: "logout_time" },
+				],
+			});
+		});
+	</script>
+</html>

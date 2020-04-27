@@ -1,0 +1,15 @@
+{"data": [
+ {"user":"daniel-savage@outlook.com","login_time":"Mon, 27 Apr 2020 17:12:23 GMT","artist_played":"Frenchies","song_played":"Tarten Tavern","playing_time":"0:25","logout_time":"Mon, 27 Apr 2020 17:14:10 GMT"}
+,
+{"user":"angelahennesy+2@one-email.net","login_time":"Mon, 27 Apr 2020 17:53:03 GMT","artist_played":"Drizzle","song_played":"The Main Man","playing_time":"0:00","logout_time":"Mon, 27 Apr 2020 17:54:26 GMT"}
+,
+{"user":"angelahennesy+3@one-email.net","login_time":"Mon, 27 Apr 2020 17:55:10 GMT","artist_played":"TonyS","song_played":"Junction","playing_time":"1:00","logout_time":"Mon, 27 Apr 2020 17:56:29 GMT"}
+,
+{"user":"angelahennesy+4@one-email.net","login_time":"Mon, 27 Apr 2020 17:57:13 GMT","artist_played":"Iron Fist","song_played":"Anxiety","playing_time":"0:57","logout_time":"Mon, 27 Apr 2020 17:58:28 GMT"}
+,
+{"user":"angelahennesy@one-email.net","login_time":"Mon, 27 Apr 2020 17:59:11 GMT","artist_played":"Felix Mendes","song_played":"Back Home","playing_time":"1:00","logout_time":"Mon, 27 Apr 2020 18:00:29 GMT"}
+,
+{"user":"angelahennesy+1@one-email.net","login_time":"Mon, 27 Apr 2020 18:01:18 GMT","artist_played":"Tibetan Wolves","song_played":"Wolfy - Club Remix","playing_time":"0:54","logout_time":"Mon, 27 Apr 2020 18:02:29 GMT"}
+,
+{"user":"angelahennesy+2@one-email.net","login_time":"Mon, 27 Apr 2020 18:03:14 GMT","artist_played":"Felix Mendes","song_played":"Leave Alone","playing_time":"0:56","logout_time":"Mon, 27 Apr 2020 18:04:33 GMT"}
+ ]}
