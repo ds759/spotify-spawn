@@ -1,25 +1,9 @@
 module.exports = {
   users: [
-    // {
-    //   name: "angelahennesy@one-email.net",
-    //   pass: "Budweiser-1"
-    // },
-    // {
-    //   name: "angelahennesy+1@one-email.net",
-    //   pass: "Budweiser-1"
-    // },
     {
-      name: "angelahennesy+2@one-email.net",
-      pass: "Budweiser-1"
+      name: "daniel-savage@outlook.com",
+      pass: "Doodlebitch1"
     }
-    // {
-    //   name: "angelahennesy+3@one-email.net",
-    //   pass: "Budweiser-1!"
-    // },
-    // {
-    //   name: "angelahennesy+4@one-email.net",
-    //   pass: "Budweiser-1"
-    // }
   ],
   songs: [
     "sauvage",
@@ -31,5 +15,22 @@ module.exports = {
     "Tibetan Wolves",
     "TonyS",
     "Marcus Williams"
+  ],
+  albums: [
+    {
+      artist: "Frenchies",
+      name: "Mustard",
+      url: "https://open.spotify.com/album/0jFG7OWE8JJFQCjTwlWeOc"
+    },
+    {
+      artist: "Frenchies",
+      name: "Nebula",
+      url: "https://open.spotify.com/album/2kolZy5ixgmmfYS0BeLhK6"
+    },
+    {
+      artist: "Frenchies",
+      name: "Nebula",
+      url: "https://open.spotify.com/album/5kVkChdROY59TfpcK5JesT"
+    }
   ]
 };
